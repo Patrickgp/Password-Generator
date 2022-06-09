@@ -87,6 +87,19 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+// This is console logging randomly selected characters from their arrays
+const randomSC = Math.floor(Math.random() * specialCharacters.length);
+console.log(randomSC, specialCharacters[randomSC]);
+
+const randomNC = Math.floor(Math.random() * numericCharacters.length);
+console.log(randomNC, numericCharacters[randomNC]);
+
+const randomLC = Math.floor(Math.random() * lowerCasedCharacters.length);
+console.log(randomLC, lowerCasedCharacters[randomLC]);
+
+const randomUC = Math.floor(Math.random() * upperCasedCharacters.length);
+console.log(randomUC, upperCasedCharacters[randomUC]);
+
 // functions below initiate prompts confirm or denying the types of characters used in the password
 function confirmLowerCase(lowerCasedCharacters) {
   let confirmLowerCase = confirm("Did you want to include lower case letters?");
@@ -124,11 +137,15 @@ function passwordLength() {
   }
 }
 
-confirmLowerCase();
-confirmUpperCase();
-confirmSpecialCharacters();
-confirmNumbers();
-passwordLength();
+//This function will generate the password
+function generatePassword() {
+  confirmLowerCase(randomLC);
+  confirmUpperCase(randomUC);
+  confirmSpecialCharacters(randomSC);
+  confirmNumbers(randomNC);
+  passwordLength();
+}
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
