@@ -101,28 +101,28 @@ const randomUC = Math.floor(Math.random() * upperCasedCharacters.length);
 console.log(randomUC, upperCasedCharacters[randomUC]);
 
 // functions below initiate prompts confirm or denying the types of characters used in the password
-function confirmLowerCase(lowerCasedCharacters) {
+function confirmLowerCase() {
   let confirmLowerCase = confirm("Did you want to include lower case letters?");
   if (confirmLowerCase) {
     alert("Lowercase lettering will be included in your password")
   } else alert("Lowercase lettering will NOT be included in your password")
 }
 
-function confirmUpperCase(upperCasedCharacters) {
+function confirmUpperCase() {
   let confirmUpperCase = confirm("Did you want to include upper case letters?");
   if (confirmUpperCase) {
   alert("Uppercase lettering will be included in your password")
   } else alert("Uppercase lettering will NOT be included in your password")
 }
 
-function confirmSpecialCharacters(specialCharacters) {
+function confirmSpecialCharacters() {
   let confirmSpecialCharacters = confirm("Did you want to include special characters?");
   if (confirmSpecialCharacters) {
   alert("Special characters will be included in your password")
   } else alert("Special characters will NOT be included in your password")
 }
 
-function confirmNumbers(numericCharacters) {
+function confirmNumbers() {
   let confirmNumbers = confirm("Did you want to include numbers?");
   if (confirmNumbers) {
   alert("Numbers will be included in your password")
@@ -130,22 +130,28 @@ function confirmNumbers(numericCharacters) {
 }
 
 function passwordLength() {
- var confirmlength = parseInt(window.prompt("Password Length: Please enter a number between 1 - 128."));
-  while (confirmlength > 128 || confirmlength < 1) {
+ var confirmLength = parseInt(window.prompt("Password Length: Please enter a number between 1 - 128."));
+  if (confirmLength > 128 || confirmLength < 1) {
     window.alert ("You need to provide a valid integer. Please try again.");
     return passwordLength();
   }
+  if(isNaN(confirmLength)) {
+    window.alert ("You need to provide a valid integer. Please try again.");
+    return passwordLength();
+  }
+  else alert("Your password will be " + confirmLength + " digits long.")
 }
 
 //This function will generate the password
 function generatePassword() {
-  confirmLowerCase(randomLC);
-  confirmUpperCase(randomUC);
-  confirmSpecialCharacters(randomSC);
-  confirmNumbers(randomNC);
+  confirmLowerCase();
+  confirmUpperCase();
+  confirmSpecialCharacters();
+  confirmNumbers();
   passwordLength();
 }
 
+// this function will write the password text
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
