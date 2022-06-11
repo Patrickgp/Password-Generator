@@ -96,9 +96,9 @@ function getCriteria() {
 //Reset choiceArray so that it is blank on every use
   choiceArray = [];
 // Determine length of password via prompt
-  confirmLength = parseInt(window.prompt("Password Length: Please enter a number between 1 - 128."));
+  confirmLength = parseInt(window.prompt("Password Length: Please enter a number between 8 - 128."));
   
-  if (isNaN(confirmLength) || confirmLength > 128 || confirmLength < 1) {
+  if (isNaN(confirmLength) || confirmLength > 128 || confirmLength < 8) {
     window.alert ("You need to provide a valid integer. Please try again.");
     return getCriteria();
   }
