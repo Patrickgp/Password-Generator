@@ -91,21 +91,6 @@ var confirmLength = 8;
 // Empty array for password criteria prompts to assemble in
 var choiceArray = [];
 
-
-// This is console logging randomly selected characters from their arrays
-function getRandomUpper() {
-  return upperCasedCharacters[Math.floor(Math.random() * upperCasedCharacters.length)];
-}
-function getRandomLower() {
-  return lowerCasedCharacters[Math.floor(Math.random() * lowerCasedCharacters.length)];
-}
-function getRandomSpecial() {
-  return specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
-}
-function getRandomNumber() {
-  return numericCharacters[Math.floor(Math.random() * numericCharacters.length)];
-}
-
 // functions below initiate prompts confirm or denying the types of characters used in the password
 function getCriteria() {
 //Reset choiceArray so that it is blank on every use
