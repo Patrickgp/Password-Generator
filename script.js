@@ -1,62 +1,5 @@
 // Assignment code here
 var password = document.getElementById("password");
-// Array of special characters to be included in password
-var specialCharacters = [
-  '@',
-  '%',
-  '+',
-  '\\',
-  '/',
-  "'",
-  '!',
-  '#',
-  '$',
-  '^',
-  '?',
-  ':',
-  ',',
-  ')',
-  '(',
-  '}',
-  '{',
-  ']',
-  '[',
-  '~',
-  '-',
-  '_',
-  '.'
-];
-// Array of numeric characters to be included in password
-var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-// Array of lowercase characters to be included in password
-var lowerCasedCharacters = [
-  'a',
-  'b',
-  'c',
-  'd',
-  'e',
-  'f',
-  'g',
-  'h',
-  'i',
-  'j',
-  'k',
-  'l',
-  'm',
-  'n',
-  'o',
-  'p',
-  'q',
-  'r',
-  's',
-  't',
-  'u',
-  'v',
-  'w',
-  'x',
-  'y',
-  'z'
-];
 // Array of uppercase characters to be included in password
 var upperCasedCharacters = [
   'A',
@@ -86,80 +29,153 @@ var upperCasedCharacters = [
   'Y',
   'Z'
 ];
+// Array of lowercase characters to be included in password
+var lowerCasedCharacters = [
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'f',
+  'g',
+  'h',
+  'i',
+  'j',
+  'k',
+  'l',
+  'm',
+  'n',
+  'o',
+  'p',
+  'q',
+  'r',
+  's',
+  't',
+  'u',
+  'v',
+  'w',
+  'x',
+  'y',
+  'z'
+];
+// Array of special characters to be included in password
+var specialCharacters = [
+  '@',
+  '%',
+  '+',
+  '\\',
+  '/',
+  "'",
+  '!',
+  '#',
+  '$',
+  '^',
+  '?',
+  ':',
+  ',',
+  ')',
+  '(',
+  '}',
+  '{',
+  ']',
+  '[',
+  '~',
+  '-',
+  '_',
+  '.'
+];
+// Array of numeric characters to be included in password
+var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+// Default password length
+var confirmLength = 8;
+// Empty array for password criteria prompts to assemble in
+var choiceArray = [];
+
 
 // This is console logging randomly selected characters from their arrays
-const randomSC = Math.floor(Math.random() * specialCharacters.length);
-console.log(randomSC, specialCharacters[randomSC]);
-
-const randomNC = Math.floor(Math.random() * numericCharacters.length);
-console.log(randomNC, numericCharacters[randomNC]);
-
-const randomLC = Math.floor(Math.random() * lowerCasedCharacters.length);
-console.log(randomLC, lowerCasedCharacters[randomLC]);
-
-const randomUC = Math.floor(Math.random() * upperCasedCharacters.length);
-console.log(randomUC, upperCasedCharacters[randomUC]);
+function getRandomUpper() {
+  return upperCasedCharacters[Math.floor(Math.random() * upperCasedCharacters.length)];
+}
+function getRandomLower() {
+  return lowerCasedCharacters[Math.floor(Math.random() * lowerCasedCharacters.length)];
+}
+function getRandomSpecial() {
+  return specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
+}
+function getRandomNumber() {
+  return numericCharacters[Math.floor(Math.random() * numericCharacters.length)];
+}
 
 // functions below initiate prompts confirm or denying the types of characters used in the password
-function confirmLowerCase() {
-  let confirmLowerCase = confirm("Did you want to include lower case letters?");
-  if (confirmLowerCase) {
-    alert("Lowercase lettering will be included in your password")
-  } else alert("Lowercase lettering will NOT be included in your password")
-}
-
-function confirmUpperCase() {
-  let confirmUpperCase = confirm("Did you want to include upper case letters?");
-  if (confirmUpperCase) {
-  alert("Uppercase lettering will be included in your password")
-  } else alert("Uppercase lettering will NOT be included in your password")
-}
-
-function confirmSpecialCharacters() {
-  let confirmSpecialCharacters = confirm("Did you want to include special characters?");
-  if (confirmSpecialCharacters) {
-  alert("Special characters will be included in your password")
-  } else alert("Special characters will NOT be included in your password")
-}
-
-function confirmNumbers() {
-  let confirmNumbers = confirm("Did you want to include numbers?");
-  if (confirmNumbers) {
-  alert("Numbers will be included in your password")
-  } else alert("Numbers will NOT be included in your password")
-}
-
-function passwordLength() {
- var confirmLength = parseInt(window.prompt("Password Length: Please enter a number between 1 - 128."));
-  if (confirmLength > 128 || confirmLength < 1) {
+function getCriteria() {
+//Reset choiceArray so that it is blank on every use
+  choiceArray = [];
+// Determine length of password via prompt
+  confirmLength = parseInt(window.prompt("Password Length: Please enter a number between 1 - 128."));
+  
+  if (isNaN(confirmLength) || confirmLength > 128 || confirmLength < 1) {
     window.alert ("You need to provide a valid integer. Please try again.");
-    return passwordLength();
+    return getCriteria();
   }
-  if(isNaN(confirmLength)) {
-    window.alert ("You need to provide a valid integer. Please try again.");
-    return passwordLength();
+  else if (alert("Your password will be " + confirmLength + " digits long."));
+
+// Determine if user wants lower case letters in password
+  if (confirm("Did you want to include lower case letters?")) {
+    choiceArray = choiceArray.concat(lowerCasedCharacters);
+    alert("Lowercase lettering will be included in your password");
   }
-  else alert("Your password will be " + confirmLength + " digits long.")
+  else if (alert("Lowercase lettering will NOT be included in your password"));
+
+// Determine if user wants upper case letters in password
+  if (confirm("Did you want to include upper case letters?")) {
+    choiceArray = choiceArray.concat(upperCasedCharacters);
+    alert("Uppercase lettering will be included in your password");
+  }
+  else if (alert("Uppercase lettering will NOT be included in your password"));
+
+// Determine if user wants special characters in password
+  if (confirm("Did you want to include special characters?")) {
+    choiceArray = choiceArray.concat(specialCharacters);
+    alert("Special characters will be included in your password");
+  }
+  else if (alert("Special characters will NOT be included in your password"));
+
+// Determine if user wants numbers in password
+  if (confirm("Did you want to include numbers?")) {
+    choiceArray = choiceArray.concat(numericCharacters);
+    alert("Numbers will be included in your password");
+  }
+  else if (alert("Numbers will NOT be included in your password"));
+
+  return true;
 }
 
-//This function will generate the password
+//This function will start the prompts
 function generatePassword() {
-  confirmLowerCase();
-  confirmUpperCase();
-  confirmSpecialCharacters();
-  confirmNumbers();
-  passwordLength();
+  var password = "";
+  for (var i=0; i < confirmLength; i++) {
+    var randomIndex = Math.floor(Math.random() * choiceArray.length);
+    password = password + choiceArray[randomIndex];
+  }
+  return password;
 }
-
-// this function will write the password text
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
-  function writePassword() {
-  var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+// Write password to the #password input
+function writePassword() {
+  var correctCriteria = getCriteria();
 
+  if (correctCriteria) {
+    var newPassword = generatePassword();
+    var passwordText = document.querySelector("#password");
+    passwordText.value = newPassword;
+  } else {
+    passwordText.value = "";
+    // run prompts function again
+    getCriteria();
+  }
 }
 
 // Add event listener to generate button
